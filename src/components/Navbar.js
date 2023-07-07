@@ -2,12 +2,16 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { MdPersonOutline } from 'react-icons/md';
-import Nav from 'react-bootstrap/Nav';
+import { useSelector } from "react-redux";
 
 function Navbar() {
+    const item = useSelector((data) => {
+        console.log(data.cart)
+        return data.cart;
+    })
     return (
         <>
-            <div className="Navbar_Head d-flex flex-row justify-content-evenly bg-info">
+            <div className="Navbar_Head d-flex flex-row justify-content-evenly align-items-center bg-info" style={{height: '5rem'}}>
                 <div className="px-4">
                     <h2 className="fs-3 pt-1">Redux_Toolkit</h2>
                 </div>
@@ -18,6 +22,7 @@ function Navbar() {
                 <div className="px-5 fs-3">
                     <span className="mx-2"><MdPersonOutline /></span>
                     <span className="mx-2">
+                        <span>{item.length}</span>
                         <NavLink to='/cart' className='bs-emphasis-color'>
                             <AiOutlineShoppingCart />
                         </NavLink>
